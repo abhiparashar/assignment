@@ -1,8 +1,14 @@
 import React from "react";
 
 const Weather = ({ result }) => {
-	console.log(result);
-	return <div>{}</div>;
+	if (result.data) {
+		return (
+			<div>
+				<h2>{result.data.current.temperature} °C</h2>
+			</div>
+		);
+	}
+	return <div></div>;
 };
 
 export default Weather;

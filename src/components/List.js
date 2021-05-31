@@ -9,16 +9,17 @@ const List = ({ results }) => {
 	const clickHnadler = () => {
 		axios
 			.get(
-				`http://api.weatherstack.com/current?access_key=a6b0683e90aa58ac11e981962d3864ef&query=res`,
+				`http://api.weatherstack.com/current?access_key=a6b0683e90aa58ac11e981962d3864ef&query=${res}`,
 			)
 			.then((res) => setResult(res))
 			.catch((err) => console.log(err));
 	};
-	console.log(result);
 	return (
 		<div>
 			<div>
-				<div>{res}</div>
+				<div>
+					<h3>{res}</h3>
+				</div>
 				<button onClick={clickHnadler}>Capital weather</button>
 			</div>
 			<Weather result={result} />

@@ -18,7 +18,7 @@ const Form = ({ callback }) => {
 					value={term}
 					onChange={changeHandler}
 				/>
-				<button>Submit</button>
+				<button style={{ margin: "10px" }}>Submit</button>
 			</form>
 		</div>
 	);
