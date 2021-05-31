@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
+import List from "./components/List";
+import Form from "./components/Form";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [state, setstate] = useState("");
+	const [result, setResult] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get(`https://restcountries.eu/rest/v2/name/${state}`)
+			.then((res) => setResult(res.data))
+			.catch((err) => console.log(err));
+	}, [state]);
+
+	const termCallback = (term) => {
+		setstate(term);
+	};
+
+	return (
+		<div className="App">
+			<Form callback={termCallback} />
+			<List results={result} />
+		</div>
+	);
 }
 
 export default App;
